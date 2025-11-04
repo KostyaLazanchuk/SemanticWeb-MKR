@@ -1,0 +1,14 @@
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?region ?region_name ?pop
+WHERE {
+  ?region rdf:type dbo:AdministrativeRegion ;
+          foaf:name ?region_name ;
+          dbo:country dbr:Ukraine;
+          dbo:populationTotal ?pop .
+  FILTER(lang(?region_name) = "en")
+}
+ORDER BY DESC(?pop)
+LIMIT 100
